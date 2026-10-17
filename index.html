@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Create professional invoices and quotations online with BizKipe. Free business documents for freelancers and small businesses.">
+<meta name="theme-color" content="#5b35d5">
+<title>BizKipe — Invoices & Quotes Made Simple</title>
+<style>
+:root{--brand:#5b35d5;--brand2:#7b61ff;--ink:#1c1a2b;--muted:#6f6b80;--line:#e8e5f0;--bg:#f7f6fb;--card:#fff;--green:#12805c;--shadow:0 12px 35px rgba(36,25,80,.08)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.5}button,input,select,textarea{font:inherit}button{cursor:pointer}.container{width:min(1160px,92%);margin:auto}.topbar{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:20}.nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 0}.logo{display:flex;align-items:center;gap:10px;font-weight:850;font-size:1.18rem;letter-spacing:-.04em}.logo-mark{height:36px;width:36px;display:grid;place-items:center;border-radius:11px;background:linear-gradient(135deg,var(--brand),#9a75ff);color:white;font-weight:900}.navlinks{display:flex;gap:20px;align-items:center}.navlinks a{color:var(--muted);text-decoration:none;font-size:.92rem}.navlinks a:hover{color:var(--brand)}.btn{border:0;border-radius:12px;padding:11px 16px;font-weight:750;transition:.15s}.btn-primary{background:var(--brand);color:white;box-shadow:0 6px 15px #5b35d52b}.btn-primary:hover{background:#4725bd;transform:translateY(-1px)}.btn-soft{background:#eee9ff;color:var(--brand)}.btn-outline{background:#fff;border:1px solid var(--line);color:var(--ink)}.btn-small{padding:8px 11px;font-size:.88rem}.hero{padding:54px 0 34px;background:radial-gradient(ellipse at 80% 15%,#e9e2ff 0,transparent 42%),linear-gradient(180deg,#fff,#f7f6fb)}.hero-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:42px;align-items:center}.eyebrow{display:inline-flex;gap:8px;align-items:center;padding:6px 10px;background:#eee9ff;color:var(--brand);border-radius:999px;font-size:.8rem;font-weight:800}.hero h1{font-size:clamp(2.3rem,5vw,4rem);line-height:1.05;letter-spacing:-.055em;margin:18px 0}.hero h1 span{color:var(--brand)}.hero p{font-size:1.08rem;color:var(--muted);max-width:570px}.hero-actions{display:flex;flex-wrap:wrap;gap:10px;margin:24px 0 16px}.fine{font-size:.82rem;color:var(--muted)}.demo-card{background:#fff;border:1px solid #e6e0f7;border-radius:22px;padding:22px;box-shadow:var(--shadow);transform:rotate(1deg)}.demo-top{display:flex;justify-content:space-between;gap:12px;border-bottom:1px solid var(--line);padding-bottom:15px}.demo-label{font-size:.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;font-weight:800}.demo-total{background:#f3efff;border-radius:14px;padding:15px;margin-top:20px}.demo-total strong{font-size:1.7rem;color:var(--brand)}.demo-lines{margin:16px 0}.demo-line{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #f0edf7;font-size:.9rem}.section{padding:52px 0}.section-head{max-width:700px;margin:0 auto 28px;text-align:center}.section-head h2{font-size:clamp(1.7rem,3vw,2.5rem);letter-spacing:-.04em;margin:0 0 10px}.section-head p{color:var(--muted);margin:0}.features{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.feature,.panel,.template-card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px}.feature-icon{width:43px;height:43px;display:grid;place-items:center;background:#f0ebff;border-radius:13px;font-size:1.25rem}.feature h3{margin:14px 0 6px;font-size:1.05rem}.feature p{margin:0;color:var(--muted);font-size:.92rem}.builder-wrap{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}.panel{padding:22px;box-shadow:0 5px 20px rgba(35,22,80,.035)}.panel h2,.panel h3{margin-top:0}.panel-title{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:18px}.panel-title h2{font-size:1.25rem;margin:0}.field-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.field{display:flex;flex-direction:column;gap:6px;margin-bottom:12px}.field label{font-size:.83rem;font-weight:750;color:#4f4a62}.field input,.field select,.field textarea{width:100%;min-width:0;border:1px solid #ded9eb;background:#fff;border-radius:10px;padding:10px 11px;color:var(--ink);outline:none}.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--brand);box-shadow:0 0 0 3px #5b35d51b}.field textarea{min-height:75px;resize:vertical}.type-toggle{display:flex;background:#f0edf7;padding:4px;border-radius:12px;gap:4px}.type-toggle button{flex:1;border:0;background:transparent;border-radius:9px;padding:9px;font-weight:800;color:var(--muted)}.type-toggle button.active{background:#fff;color:var(--brand);box-shadow:0 2px 7px #30205012}.items-head,.item-row{display:grid;grid-template-columns:minmax(0,1fr) 72px 90px 32px;gap:7px;align-items:center}.items-head{font-size:.73rem;color:var(--muted);font-weight:800;padding:6px 0}.item-row{margin-bottom:8px}.item-row input{width:100%;min-width:0;border:1px solid #ded9eb;border-radius:8px;padding:9px 7px}.remove-item{border:0;background:#fff0f0;color:#a52a2a;border-radius:8px;height:34px;font-weight:900}.add-row{margin:4px 0 16px}.summary{background:#f8f6ff;border:1px solid #e9e3ff;border-radius:13px;padding:14px;margin:14px 0}.sum-row{display:flex;justify-content:space-between;gap:12px;margin:5px 0;font-size:.9rem}.sum-row.total{font-size:1.2rem;font-weight:900;border-top:1px solid #ddd5fa;padding-top:10px;margin-top:10px}.preview{background:#fff;border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);overflow:hidden}.preview-toolbar{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px 16px;background:#fbfaff;border-bottom:1px solid var(--line)}.preview-paper{padding:clamp(18px,3vw,32px);min-height:560px}.doc-header{display:flex;justify-content:space-between;gap:20px;border-bottom:3px solid var(--brand);padding-bottom:20px}.doc-brand{font-size:1.35rem;font-weight:900;color:var(--brand);overflow-wrap:anywhere}.doc-type{text-align:right;font-size:1.6rem;font-weight:900;letter-spacing:-.04em}.doc-meta{color:var(--muted);font-size:.82rem}.doc-parties{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:24px 0}.doc-label{font-size:.68rem;color:var(--muted);font-weight:900;letter-spacing:.09em;text-transform:uppercase}.doc-parties strong{display:block;margin:4px 0;overflow-wrap:anywhere}.doc-table{width:100%;border-collapse:collapse;font-size:.8rem}.doc-table th{text-align:left;background:#f5f2ff;padding:10px 7px;color:#4b3b83}.doc-table td{padding:11px 7px;border-bottom:1px solid #eeeaf6;vertical-align:top}.doc-table td:last-child,.doc-table th:last-child{text-align:right}.doc-bottom{display:grid;grid-template-columns:1fr minmax(130px,.7fr);gap:18px;margin-top:22px}.doc-notes{font-size:.78rem;color:var(--muted);white-space:pre-wrap;overflow-wrap:anywhere}.doc-total-row{display:flex;justify-content:space-between;gap:12px;padding:5px 0;font-size:.83rem}.doc-total-row.grand{border-top:2px solid var(--brand);padding-top:10px;margin-top:6px;font-weight:900;font-size:1.1rem}.doc-footer{border-top:1px solid var(--line);margin-top:35px;padding-top:12px;font-size:.72rem;color:var(--muted);text-align:center}.templates{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.template-card{padding:12px;overflow:hidden}.template-preview{height:170px;background:#f8f6ff;border:1px solid var(--line);border-radius:12px;padding:16px;position:relative;overflow:hidden}.mini-head{height:18px;width:52%;background:var(--brand);border-radius:4px;margin-bottom:13px}.mini-line{height:6px;background:#ddd7ed;border-radius:5px;margin:9px 0;width:80%}.mini-line.short{width:48%}.mini-total{height:27px;width:45%;background:#e6ddff;border-radius:5px;margin:15px 0 0 auto}.template-card h3{margin:13px 0 3px}.template-card p{margin:0 0 12px;color:var(--muted);font-size:.85rem}.template-actions{display:flex;justify-content:space-between;align-items:center;gap:8px}.price{font-weight:900}.locked{position:absolute;top:10px;right:10px;background:#fff;color:#5c4c8d;border:1px solid #e5def7;padding:4px 8px;border-radius:999px;font-size:.7rem;font-weight:850}.note-box{background:#fff8e8;border:1px solid #f4e2b3;color:#735619;border-radius:12px;padding:14px;font-size:.88rem}.faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.faq-grid details{background:#fff;border:1px solid var(--line);padding:16px;border-radius:13px}.faq-grid summary{font-weight:800;cursor:pointer}.faq-grid p{color:var(--muted);font-size:.9rem;margin-bottom:0}.footer{background:#1f1934;color:#eae5fa;padding:35px 0;margin-top:20px}.footer-row{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}.footer p{color:#bcb4d2;font-size:.85rem;max-width:620px}.checkout-modal{position:fixed;inset:0;background:#171126a8;z-index:90;display:grid;place-items:center;padding:18px}.checkout-box{position:relative;background:#fff;border-radius:20px;padding:25px;width:min(100%,460px);max-height:90vh;overflow:auto;box-shadow:0 24px 70px #140d2b40}.checkout-box h2{margin:0 30px 8px 0;letter-spacing:-.03em}.checkout-close{position:absolute;right:14px;top:12px;border:0;background:#f0edf7;border-radius:9px;width:34px;height:34px;font-size:1.3rem}.checkout-box .field{margin-top:13px}.checkout-box .note-box{margin-top:14px}.toast{position:fixed;bottom:20px;left:50%;transform:translate(-50%,120px);background:#211b36;color:#fff;padding:12px 18px;border-radius:12px;box-shadow:var(--shadow);transition:.25s;z-index:100;max-width:90%;font-size:.9rem}.toast.show{transform:translate(-50%,0)}.pill{display:inline-block;background:#e9f8f0;color:#13784e;border-radius:999px;padding:4px 8px;font-size:.72rem;font-weight:850}.muted{color:var(--muted)}.hidden{display:none!important}
+@media(max-width:850px){.hero-grid,.builder-wrap{grid-template-columns:1fr}.hero{padding-top:35px}.demo-card{max-width:600px;transform:none}.features{grid-template-columns:1fr 1fr}.templates{grid-template-columns:1fr 1fr}.navlinks{gap:10px}.navlinks a:not(.btn){display:none}}
+@media(max-width:560px){.features,.templates,.faq-grid{grid-template-columns:1fr}.field-grid{grid-template-columns:1fr}.item-row{grid-template-columns:minmax(0,1fr) 55px 72px 30px;gap:5px}.item-row input{padding:8px 5px;font-size:.82rem}.items-head{grid-template-columns:minmax(0,1fr) 55px 72px 30px;gap:5px;font-size:.65rem}.doc-parties{gap:10px}.doc-header{gap:8px}.doc-type{font-size:1.25rem}.preview-paper{padding:16px}.doc-table{font-size:.72rem}.doc-table th,.doc-table td{padding:8px 4px}.doc-bottom{grid-template-columns:1fr}.nav .btn{padding:9px 11px;font-size:.83rem}.hero h1{font-size:2.45rem}}
+@media print{body{background:#fff}.topbar,.hero,.section:not(#builder),#builder .builder-panel,.preview-toolbar,.footer,.print-hide{display:none!important}.container{width:100%}.section#builder{padding:0}.builder-wrap{display:block}.preview{border:0;box-shadow:none}.preview-paper{padding:0;min-height:auto}.panel{display:none}.preview{display:block!important}}
+</style>
+</head>
+<body>
+<header class="topbar">
+ <div class="container nav">
+  <a class="logo" href="#" style="text-decoration:none;color:inherit"><span class="logo-mark">B</span><span>BizKipe</span></a>
+  <nav class="navlinks"><a href="#features">Features</a><a href="#builder">Create document</a><a href="#templates">Templates</a><button class="btn btn-primary btn-small" onclick="scrollToBuilder()">Create for free</button></nav>
+ </div>
+</header>
+<main>
+<section class="hero">
+ <div class="container hero-grid">
+  <div>
+   <span class="eyebrow">✦ Simple tools for small businesses</span>
+   <h1>Get paid with <span>professional</span> invoices.</h1>
+   <p>Create clean invoices and quotations in minutes. No account required for this starter version. Made for freelancers, creators and small businesses in Kenya and beyond.</p>
+   <div class="hero-actions"><button class="btn btn-primary" onclick="scrollToBuilder()">Create an invoice free →</button><a class="btn btn-outline" href="#templates" style="text-decoration:none">Explore templates</a></div>
+   <div class="fine">Free to use · Print or save as PDF · Works on mobile</div>
+  </div>
+  <div class="demo-card" aria-label="Invoice preview example">
+   <div class="demo-top"><div><div class="demo-label">Invoice from</div><strong>Your Business</strong><div class="fine">Nairobi, Kenya</div></div><div style="text-align:right"><div class="demo-label">Invoice</div><strong>#BK-001</strong><div class="fine">Due in 7 days</div></div></div>
+   <div class="demo-lines"><div class="demo-line"><span>Website design</span><strong>KSh 8,000</strong></div><div class="demo-line"><span>Brand starter kit</span><strong>KSh 2,500</strong></div></div>
+   <div class="demo-total"><div class="demo-label">Total due</div><strong>KSh 10,500</strong><div class="fine">Thank you for your business.</div></div>
+  </div>
+ </div>
+</section>
+<section class="section" id="features">
+ <div class="container"><div class="section-head"><h2>Less admin. More business.</h2><p>Everything you need to create a clear business document without wrestling with spreadsheets.</p></div>
+  <div class="features">
+   <article class="feature"><div class="feature-icon">🧾</div><h3>Invoices and quotations</h3><p>Switch document type, add items, set quantities and calculate totals automatically.</p></article>
+   <article class="feature"><div class="feature-icon">📄</div><h3>Save as PDF</h3><p>Print your document or choose “Save as PDF” from your browser’s print menu.</p></article>
+   <article class="feature"><div class="feature-icon">🇰🇪</div><h3>Kenya-friendly</h3><p>Use Kenyan shillings or switch currency for international clients.</p></article>
+  </div>
+ </div>
+</section>
+<section class="section" id="builder" style="padding-top:20px">
+ <div class="container">
+  <div class="section-head"><h2>Create your document</h2><p>Enter your details below. The preview updates as you type.</p></div>
+  <div class="builder-wrap">
+   <div class="panel builder-panel">
+    <div class="panel-title"><h2>Document details</h2><span class="pill">Free</span></div>
+    <div class="type-toggle"><button id="invoiceTab" class="active" onclick="setDocType('invoice')">Invoice</button><button id="quoteTab" onclick="setDocType('quote')">Quotation</button></div>
+    <div class="field-grid" style="margin-top:16px">
+     <div class="field"><label for="currency">Currency</label><select id="currency" onchange="updatePreview()"><option value="KES">KES — Kenyan shilling</option><option value="USD">USD — US dollar</option><option value="GBP">GBP — British pound</option><option value="EUR">EUR — Euro</option></select></div>
+     <div class="field"><label for="docNumber">Document number</label><input id="docNumber" value="BK-001" oninput="updatePreview()"></div>
+    </div>
+    <h3 style="font-size:1rem;margin:8px 0 12px">Your business</h3>
+    <div class="field-grid">
+     <div class="field"><label for="businessName">Business name *</label><input id="businessName" placeholder="e.g. Acme Studio" value="Your Business" oninput="updatePreview()"></div>
+     <div class="field"><label for="businessEmail">Email or phone</label><input id="businessEmail" placeholder="you@example.com" oninput="updatePreview()"></div>
+    </div>
+    <div class="field"><label for="businessAddress">Business address (optional)</label><input id="businessAddress" placeholder="Town, country" oninput="updatePreview()"></div>
+    <h3 style="font-size:1rem;margin:8px 0 12px">Customer</h3>
+    <div class="field-grid">
+     <div class="field"><label for="clientName">Customer / company *</label><input id="clientName" placeholder="Customer name" value="Sample Customer" oninput="updatePreview()"></div>
+     <div class="field"><label for="clientEmail">Customer email (optional)</label><input id="clientEmail" placeholder="customer@example.com" oninput="updatePreview()"></div>
+    </div>
+    <div class="field"><label for="clientAddress">Customer address (optional)</label><input id="clientAddress" placeholder="Customer town or address" oninput="updatePreview()"></div>
+    <div class="field-grid">
+     <div class="field"><label for="issueDate">Issue date</label><input id="issueDate" type="date" oninput="updatePreview()"></div>
+     <div class="field"><label for="dueDate" id="dueLabel">Due date</label><input id="dueDate" type="date" oninput="updatePreview()"></div>
+    </div>
+    <h3 style="font-size:1rem;margin:8px 0 8px">Items / services</h3>
+    <div class="items-head"><span>Description</span><span>Qty</span><span>Price</span><span></span></div>
+    <div id="items"></div>
+    <button class="btn btn-soft btn-small add-row" onclick="addItem()">＋ Add item</button>
+    <div class="field-grid">
+     <div class="field"><label for="taxRate">Tax (%) — if applicable</label><input id="taxRate" type="number" min="0" max="100" step="0.01" value="0" oninput="updatePreview()"></div>
+     <div class="field"><label for="discount">Discount (amount)</label><input id="discount" type="number" min="0" step="0.01" value="0" oninput="updatePreview()"></div>
+    </div>
+    <div class="field"><label for="notes">Notes / payment terms</label><textarea id="notes" placeholder="Thank you for your business. Add your payment terms here." oninput="updatePreview()">Thank you for your business.</textarea></div>
+    <div class="note-box">Tax is optional and defaults to 0%. Check the tax rules that apply to your business before charging tax. This tool does not calculate statutory tax advice.</div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:16px"><button class="btn btn-primary" onclick="printDocument()">Print / Save PDF</button><button class="btn btn-outline" onclick="resetForm()">Reset</button></div>
+   </div>
+   <div class="preview" id="documentPreview">
+    <div class="preview-toolbar"><strong>Live preview</strong><button class="btn btn-outline btn-small" onclick="printDocument()">⇩ Save PDF</button></div>
+    <div class="preview-paper" id="paper"></div>
+   </div>
+  </div>
+ </div>
+</section>
+<section class="section" id="templates">
+ <div class="container"><div class="section-head"><h2>Choose your style</h2><p>Use the free template now. Premium packs are shown as a preview for a future paid version.</p></div>
+  <div class="templates">
+   <article class="template-card"><div class="template-preview"><div class="mini-head"></div><div class="mini-line"></div><div class="mini-line short"></div><div class="mini-line"></div><div class="mini-total"></div></div><h3>Classic Purple</h3><p>Clean, professional and easy to read.</p><div class="template-actions"><span class="price">Free</span><button class="btn btn-soft btn-small" onclick="chooseTemplate('classic')">Use template</button></div></article>
+   <article class="template-card"><div class="template-preview" style="background:#f0faf5"><span class="locked">Premium preview</span><div class="mini-head" style="background:#13805c"></div><div class="mini-line" style="background:#cce9da"></div><div class="mini-line short" style="background:#cce9da"></div><div class="mini-line" style="background:#cce9da"></div><div class="mini-total" style="background:#c8f0dd"></div></div><h3>Emerald Business</h3><p>For consultants and established small businesses.</p><div class="template-actions"><span class="price">KSh 150*</span><button class="btn btn-primary btn-small" onclick="openCheckout()">Buy pack</button></div></article>
+   <article class="template-card"><div class="template-preview" style="background:#fff8ef"><span class="locked">Premium preview</span><div class="mini-head" style="background:#bd6c25"></div><div class="mini-line" style="background:#f0d9bf"></div><div class="mini-line short" style="background:#f0d9bf"></div><div class="mini-line" style="background:#f0d9bf"></div><div class="mini-total" style="background:#f8dfc1"></div></div><h3>Warm Minimal</h3><p>A softer style for creatives and freelancers.</p><div class="template-actions"><span class="price">KSh 150*</span><button class="btn btn-primary btn-small" onclick="openCheckout()">Buy pack</button></div></article>
+  </div>
+  <p class="fine" style="text-align:center;margin-top:15px">*Illustrative future pricing. Premium purchases and account features are not active in this starter build.</p>
+ </div>
+</section>
+<section class="section" id="faq">
+ <div class="container"><div class="section-head"><h2>Before you get started</h2><p>Clear expectations make a trustworthy tool.</p></div><div class="faq-grid">
+  <details><summary>Is BizKipe free?</summary><p>The invoice and quotation generator in this starter website is free. Premium template cards are previews only; payment is not enabled yet.</p></details>
+  <details><summary>How do I save my document?</summary><p>Choose “Print / Save PDF”, then select “Save as PDF” in your browser’s print dialog. On mobile, this option may be under the share or print menu.</p></details>
+  <details><summary>Does it send invoices to customers?</summary><p>Not yet. This version creates a printable document in your browser. Email delivery, accounts and cloud storage would require additional implementation.</p></details>
+  <details><summary>Can I accept M-Pesa?</summary><p>Not in this version. Daraja integration requires approved production access and a secure server-side payment flow. Never enter Daraja secrets into this page.</p></details>
+ </div></div>
+</section>
+</main>
+<footer class="footer"><div class="container footer-row"><div><div class="logo" style="color:#fff"><span class="logo-mark">B</span><span>BizKipe</span></div><p>Simple business documents for people building something of their own. Built as a starter product; no payment is collected on this page.</p></div><div><strong>Build with trust</strong><p>Use accurate business details, agree payment terms with your customers, and keep copies of your records.</p></div></div><div style="display:flex;flex-wrap:wrap;gap:14px;margin-top:14px;font-size:.84rem"><a style="color:#eae5fa" href="/terms.html">Terms</a><a style="color:#eae5fa" href="/privacy.html">Privacy</a><a style="color:#eae5fa" href="/refunds.html">Refund policy</a><a style="color:#eae5fa" href="/support.html">Support</a></div></footer>
+<div id="checkoutModal" class="checkout-modal hidden" role="dialog" aria-modal="true" aria-labelledby="checkoutTitle">
+ <div class="checkout-box">
+  <button class="checkout-close" onclick="closeCheckout()" aria-label="Close checkout">×</button>
+  <h2 id="checkoutTitle">Get the Premium Template Pack</h2>
+  <p class="muted">KSh 150 · Invoice, quotation and price-list templates. M-Pesa checkout is available only after the site owner configures approved Daraja production access.</p>
+  <form id="checkoutForm" onsubmit="startCheckout(event)">
+   <div class="field"><label for="buyerName">Your name</label><input id="buyerName" required maxlength="100" autocomplete="name" placeholder="Full name"></div>
+   <div class="field"><label for="buyerEmail">Email address</label><input id="buyerEmail" required type="email" maxlength="254" autocomplete="email" placeholder="you@example.com"></div>
+   <div class="field"><label for="buyerPhone">M-Pesa phone number</label><input id="buyerPhone" required inputmode="tel" autocomplete="tel" placeholder="07XXXXXXXX or 2547XXXXXXXX"></div>
+   <button id="payButton" class="btn btn-primary" type="submit" style="width:100%">Continue to M-Pesa</button>
+   <p class="fine">Do not share your M-Pesa PIN. BizKipe will never ask you to enter it on this website.</p>
+  </form>
+  <div id="checkoutStatus" class="note-box hidden" role="status" aria-live="polite"></div>
+ </div>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>
+let docType='invoice', itemCounter=0, currentTemplate='classic';
+const $=id=>document.getElementById(id);
+function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function money(n){const c=$('currency').value;try{return new Intl.NumberFormat(c==='KES'?'en-KE':'en-US',{style:'currency',currency:c,maximumFractionDigits:2}).format(Number(n)||0)}catch(e){return c+' '+(Number(n)||0).toFixed(2)}}
+function setDocType(type){docType=type;$('invoiceTab').classList.toggle('active',type==='invoice');$('quoteTab').classList.toggle('active',type==='quote');$('dueLabel').textContent=type==='invoice'?'Due date':'Valid until';updatePreview();}
+function addItem(desc='',qty=1,price=0){itemCounter++;const row=document.createElement('div');row.className='item-row';row.dataset.id=itemCounter;row.innerHTML=`<input aria-label="Item description" class="item-desc" placeholder="Service or product" value="${esc(desc)}" oninput="updatePreview()"><input aria-label="Quantity" class="item-qty" type="number" min="0" step="any" value="${qty}" oninput="updatePreview()"><input aria-label="Unit price" class="item-price" type="number" min="0" step="any" value="${price}" oninput="updatePreview()"><button class="remove-item" aria-label="Remove item" onclick="this.parentElement.remove();updatePreview()">×</button>`;$('items').appendChild(row);updatePreview();}
+function getItems(){return [...document.querySelectorAll('.item-row')].map(row=>({desc:row.querySelector('.item-desc').value,qty:Math.max(0,Number(row.querySelector('.item-qty').value)||0),price:Math.max(0,Number(row.querySelector('.item-price').value)||0)}))}
+function updatePreview(){
+ const items=getItems(), subtotal=items.reduce((s,i)=>s+i.qty*i.price,0), discount=Math.min(subtotal,Math.max(0,Number($('discount').value)||0)), taxable=Math.max(0,subtotal-discount), tax=taxable*Math.max(0,Math.min(100,Number($('taxRate').value)||0))/100,total=taxable+tax;
+ const title=docType==='invoice'?'INVOICE':'QUOTATION', biz=$('businessName').value.trim()||'Your Business', client=$('clientName').value.trim()||'Customer name', number=$('docNumber').value.trim()||'—';
+ const dateVal=id=>{let v=$(id).value;if(!v)return '—';const d=new Date(v+'T12:00:00');return d.toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'})};
+ const address=$('businessAddress').value.trim(), contact=$('businessEmail').value.trim(), caddr=$('clientAddress').value.trim(), cemail=$('clientEmail').value.trim(), notes=$('notes').value;
+ const rows=items.length?items.map(i=>`<tr><td>${esc(i.desc||'Item')}</td><td>${i.qty}</td><td>${money(i.price)}</td><td>${money(i.qty*i.price)}</td></tr>`).join(''):'<tr><td colspan="4" style="color:#888">Add your first item in the form.</td></tr>';
+ $('paper').innerHTML=`<div class="doc-header"><div><div class="doc-brand">${esc(biz)}</div><div class="doc-meta">${esc(address)}${address&&contact?' · ':''}${esc(contact)}</div></div><div><div class="doc-type">${title}</div><div class="doc-meta" style="text-align:right"># ${esc(number)}</div><div class="doc-meta" style="text-align:right">${docType==='invoice'?'Issued':'Prepared'}: ${dateVal('issueDate')}</div><div class="doc-meta" style="text-align:right">${docType==='invoice'?'Due':'Valid until'}: ${dateVal('dueDate')}</div></div></div>
+ <div class="doc-parties"><div><div class="doc-label">Bill to</div><strong>${esc(client)}</strong><div class="doc-meta">${esc(caddr)}</div><div class="doc-meta">${esc(cemail)}</div></div><div><div class="doc-label">Document summary</div><strong>${docType==='invoice'?'Payment requested':'Estimate of proposed work'}</strong><div class="doc-meta">${docType==='invoice'?'Please pay according to the terms below.':'Final charges may change if the scope changes.'}</div></div></div>
+ <table class="doc-table"><thead><tr><th>Description</th><th>Qty</th><th>Unit price</th><th>Amount</th></tr></thead><tbody>${rows}</tbody></table>
+ <div class="doc-bottom"><div><div class="doc-label">Notes & terms</div><div class="doc-notes">${esc(notes||'—')}</div></div><div><div class="doc-total-row"><span>Subtotal</span><strong>${money(subtotal)}</strong></div><div class="doc-total-row"><span>Discount</span><strong>−${money(discount)}</strong></div><div class="doc-total-row"><span>Tax (${Math.max(0,Number($('taxRate').value)||0)}%)</span><strong>${money(tax)}</strong></div><div class="doc-total-row grand"><span>Total</span><strong>${money(total)}</strong></div></div></div>
+ <div class="doc-footer">Thank you for your business · Generated with BizKipe</div>`;
+}
+function printDocument(){updatePreview();window.print()}
+function resetForm(){if(!confirm('Clear the current document and start again?'))return;$('businessName').value='';$('businessEmail').value='';$('businessAddress').value='';$('clientName').value='';$('clientEmail').value='';$('clientAddress').value='';$('docNumber').value='BK-001';$('taxRate').value='0';$('discount').value='0';$('notes').value='Thank you for your business.';$('items').innerHTML='';addItem();updatePreview()}
+function chooseTemplate(t){currentTemplate=t;showToast('Classic Purple is selected. More visual templates will be added in a future update.')}
+let activeOrder=null, pollHandle=null;
+function openCheckout(){$('checkoutModal').classList.remove('hidden');$('checkoutStatus').classList.add('hidden');$('checkoutStatus').textContent='';$('buyerName').focus()}
+function closeCheckout(){$('checkoutModal').classList.add('hidden');if(pollHandle){clearTimeout(pollHandle);pollHandle=null}}
+function setCheckoutStatus(message){$('checkoutStatus').textContent=message;$('checkoutStatus').classList.remove('hidden')}
+async function startCheckout(event){event.preventDefault();const button=$('payButton');button.disabled=true;button.textContent='Starting secure checkout…';
+ try{const response=await fetch('/api/orders/create',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({productId:'premium-template-pack',name:$('buyerName').value.trim(),email:$('buyerEmail').value.trim(),phone:$('buyerPhone').value.trim()})});const data=await response.json();if(!response.ok)throw new Error(data.error||'Checkout is not configured yet.');activeOrder=data;setCheckoutStatus(data.message||'Check your phone for the M-Pesa prompt. Enter your PIN only in the official M-Pesa prompt. Keep this page open while payment status is checked.');pollOrder();}
+ catch(err){setCheckoutStatus(err.message||'Unable to start checkout. Please try again later.')}finally{button.disabled=false;button.textContent='Continue to M-Pesa'}}
+async function pollOrder(){if(!activeOrder)return;try{const r=await fetch('/api/orders/status?id='+encodeURIComponent(activeOrder.orderId),{headers:{'Authorization':'Bearer '+activeOrder.accessToken}});const d=await r.json();if(!r.ok)throw new Error(d.error||'Could not check payment status.');if(d.status==='paid'&&d.downloadUrl){setCheckoutStatus('Payment confirmed. Your template pack is ready. Use the secure download link below.');const a=document.createElement('a');a.href=d.downloadUrl;a.textContent='Download your Premium Template Pack';a.className='btn btn-primary';a.style.display='inline-block';a.style.marginTop='12px';a.style.textDecoration='none';a.setAttribute('download','');$('checkoutStatus').appendChild(document.createElement('br'));$('checkoutStatus').appendChild(a);activeOrder=null;sessionStorage.removeItem('bizkipe_pending_order');return}if(['failed','cancelled','expired'].includes(d.status)){setCheckoutStatus('Payment status: '+d.status+'. You can close this window and try again if needed.');activeOrder=null;sessionStorage.removeItem('bizkipe_pending_order');return}setTimeout(pollOrder,4000)}catch(e){setTimeout(pollOrder,6000)}}
+$('checkoutModal').addEventListener('click',e=>{if(e.target===$('checkoutModal'))closeCheckout()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeCheckout()});
+function showToast(message){const t=$('toast');t.textContent=message;t.classList.add('show');clearTimeout(window.toastTimer);window.toastTimer=setTimeout(()=>t.classList.remove('show'),3000)}
+function scrollToBuilder(){$('builder').scrollIntoView({behavior:'smooth'});setTimeout(()=>$('businessName').focus({preventScroll:true}),350)}
+function setDefaultDates(){const now=new Date(),due=new Date(now);due.setDate(due.getDate()+7);const fmt=d=>`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;$('issueDate').value=fmt(now);$('dueDate').value=fmt(due)}
+setDefaultDates();addItem('Service or product',1,0);updatePreview();
+</script>
+</body>
+</html>
