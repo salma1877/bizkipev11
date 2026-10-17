@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Payment Success - BizKipe</title>
+<style>body{font-family:system-ui;padding:20px;max-width:600px;margin:auto;text-align:center} .box{border:1px solid #ddd;padding:30px;border-radius:12px;margin-top:30px} .btn{background:#000;color:#fff;padding:15px 30px;border-radius:8px;text-decoration:none;display:inline-block;margin-top:20px} .loading{color:#666}</style>
+</head>
+<body>
+<h1>🎉 Payment Received!</h1>
+<div class="box">
+<p id="msg" class="loading">Verifying your payment...</p>
+<div id="download-area" style="display:none">
+<h3>Your download is ready!</h3>
+<a id="dl-btn" class="btn" href="#">Download Now</a>
+<p style="margin-top:15px;font-size:14px;color:#666">Link expires in 24 hours. Check email also.</p>
+</div>
+</div>
+<script>
+const params = new URLSearchParams(location.search);
+const orderId = params.get('order_id') || params.get('orderId');
+async function check(){
+ if(!orderId){document.getElementById('msg').innerText='Order ID missing. Contact support.'; return;}
+ try{
+  const res = await fetch('/api/orders/status?orderId='+orderId);
+  const data = await res.json();
+  if(data.status==='paid' || data.paid){
+   document.getElementById('msg').innerText='Payment verified! ✅';
+   document.getElementById('download-area').style.display='block';
+   document.getElementById('dl-btn').href='/api/download?orderId='+orderId;
+  } else {
+   document.getElementById('msg').innerText='Payment status: '+ (data.status||'pending') + '. Refresh in 5 sec...';
+   setTimeout(check,5000);
+  }
+ }catch(e){document.getElementById('msg').innerText='Error checking payment. Refresh page.';}
+}
+check();
+</script>
+</body>
+</html>
