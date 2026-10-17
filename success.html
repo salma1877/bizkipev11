@@ -1,37 +1,20 @@
 <!DOCTYPE html>
-<html>
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Success - BizKipe</title>
-<style>body{font-family:system-ui;padding:20px;max-width:600px;margin:auto;text-align:center}.box{border:1px solid #ddd;padding:30px;border-radius:12px;margin-top:30px}.btn{background:#000;color:#fff;padding:15px 30px;border-radius:8px;text-decoration:none;display:inline-block;margin-top:20px}.small{font-size:12px;color:#888;margin-top:20px;word-break:break-all}</style>
-</head>
-<body>
+<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Download Ready - BizKipe</title>
+<style>body{font-family:system-ui;padding:20px;max-width:600px;margin:auto;text-align:center}.box{border:1px solid #ddd;padding:30px;border-radius:16px;margin-top:30px;box-shadow:0 4px 12px rgba(0,0,0,0.05)}.btn{background:#111;color:#fff;padding:16px 32px;border-radius:10px;text-decoration:none;display:inline-block;margin-top:20px;font-weight:600;font-size:16px}.btn:hover{background:#000}.small{font-size:12px;color:#999;margin-top:20px}</style>
+</head><body>
 <h1>🎉 Payment Received!</h1>
 <div class="box">
-<p id="msg">Order: <b id="oid"></b></p>
-<div id="download-area">
-<h3>Your download is ready!</h3>
+<p>Order ID: <b id="oid" style="font-size:13px"></b></p>
+<h2>Your download is ready!</h2>
+<p>Thank you for purchasing BizKipe Premium Template Pack.</p>
 <a id="dl-btn" class="btn" href="#">⬇️ Download Now</a>
-<p class="small" id="debug"></p>
-<p style="margin-top:15px;font-size:14px;color:#666">If download fails, contact support with Order ID.</p>
-</div>
+<p class="small">Link expires in 5 minutes. If it fails, contact support with your Order ID.</p>
 </div>
 <script>
-const params = new URLSearchParams(location.search);
-const orderId = params.get('order_id') || params.get('orderId');
-document.getElementById('oid').innerText = orderId || 'N/A';
-const dl = document.getElementById('dl-btn');
-if(orderId){
-  dl.href = '/api/download?orderId='+orderId;
-  // Also try both param names for safety
-  dl.href = '/api/download?orderId='+orderId+'&order_id='+orderId;
-  document.getElementById('debug').innerText = 'API: '+dl.href;
-  // Try check status in background
-  fetch('/api/orders/status?orderId='+orderId).then(r=>r.text()).then(t=>{
-    document.getElementById('msg').innerText += ' | API says: '+t.substring(0,100);
-  });
-} else {
-  document.getElementById('msg').innerText='No order ID found!';
-}
+const params=new URLSearchParams(location.search);
+const orderId=params.get('order_id')||params.get('orderId');
+document.getElementById('oid').innerText=orderId||'N/A';
+if(orderId) document.getElementById('dl-btn').href='/api/download?orderId='+orderId;
 </script>
-</body>
-</html>
+</body></html>
