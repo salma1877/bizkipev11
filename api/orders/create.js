@@ -1,11 +1,17 @@
 const crypto = require('crypto');
 const { json, sha256, normalizePhone, requireMethod, supabase, darajaAccessToken, kenyaTimestamp } = require('../_lib');
 
-const PRODUCTS = {
-  'premium-template-pack': { name: 'Premium Template Pack', amount: 150, currency: 'KES' },
-  'bizkipe-templates': { name: 'BizKipe Templates', amount: 150, currency: 'KES' },
-  'templates': { name: 'BizKipe Templates', amount: 150, currency: 'KES' },
-};
+
+  const PRODUCTS = {
+    'emerald-business': { name: 'Emerald Business', amount: 250, currency: 'KES' },
+    'warm-minimal': { name: 'Warm Minimal', amount: 250, currency: 'KES' } // FIXED EMERALD 250,
+    'premium-template-pack': { name: 'Emerald Business', amount: 250, currency: 'KES' },
+    'bizkipe_templates': { name: 'BizKipe Templates', amount: 250, currency: 'KES' },
+    'templates': { name: 'BizKipe Templates', amount: 250, currency: 'KES' },
+    'emerald': { name: 'Emerald Business', amount: 250, currency: 'KES' },
+    'warm': { name: 'Warm Minimal', amount: 250, currency: 'KES' } // FIXED EMERALD 250,
+  };
+
 
 module.exports = async function handler(req, res) {
   if (!requireMethod(req, res, 'POST')) return;
@@ -16,7 +22,8 @@ module.exports = async function handler(req, res) {
     let product = PRODUCTS[productId];
     if (!product) {
       console.log('Unknown productId', productId, 'using fallback 150');
-      product = { name: productId, amount: 150, currency: 'KES' };
+      product = { name: productId, amount: productId.includes('warm') ? 150 : 250, currency: 'KES' } // FIXED
+  // OLD LINE BELOW DISABLED: product = { name: productId, amount: 250, currency: 'KES' } // FIXED EMERALD 250;
     }
     const name = String(body.name || body.customerName || '').trim().slice(0, 100);
     const email = String(body.email || '').trim().toLowerCase().slice(0, 254);
