@@ -17,113 +17,113 @@
 <body>
 <header class="topbar">
  <div class="container nav">
-  <a class="logo" href="#" style="text-decoration:none;color:inherit"><span class="logo-mark">B</span><span>BizKipe</span></a>
-  <nav class="navlinks"><a href="#features">Features</a><a href="#builder">Create document</a><a href="#templates">Templates</a><button class="btn btn-primary btn-small" onclick="scrollToBuilder()">Create for free</button></nav>
+ <a class="logo" href="#" style="text-decoration:none;color:inherit"><span class="logo-mark">B</span><span>BizKipe</span></a>
+ <nav class="navlinks"><a href="#features">Features</a><a href="#builder">Create document</a><a href="#templates">Templates</a><button class="btn btn-primary btn-small" onclick="scrollToBuilder()">Create for free</button></nav>
  </div>
 </header>
 <main>
 <section class="hero">
  <div class="container hero-grid">
-  <div>
-   <span class="eyebrow">✦ Simple tools for small businesses</span>
-   <h1>Get paid with <span>professional</span> invoices.</h1>
-   <p>Create clean invoices and quotations in minutes. No account required for this starter version. Made for freelancers, creators and small businesses in Kenya and beyond.</p>
-   <div class="hero-actions"><button class="btn btn-primary" onclick="scrollToBuilder()">Create an invoice free →</button><a class="btn btn-outline" href="#templates" style="text-decoration:none">Explore templates</a></div>
-   <div class="fine">Free to use · Print or save as PDF · Works on mobile</div>
-  </div>
-  <div class="demo-card" aria-label="Invoice preview example">
-   <div class="demo-top"><div><div class="demo-label">Invoice from</div><strong>Your Business</strong><div class="fine">Nairobi, Kenya</div></div><div style="text-align:right"><div class="demo-label">Invoice</div><strong>#BK-001</strong><div class="fine">Due in 7 days</div></div></div>
-   <div class="demo-lines"><div class="demo-line"><span>Website design</span><strong>KSh 8,000</strong></div><div class="demo-line"><span>Brand starter kit</span><strong>KSh 2,500</strong></div></div>
-   <div class="demo-total"><div class="demo-label">Total due</div><strong>KSh 10,500</strong><div class="fine">Thank you for your business.</div></div>
-  </div>
+ <div>
+  <span class="eyebrow">✦ Simple tools for small businesses</span>
+  <h1>Get paid with <span>professional</span> invoices.</h1>
+  <p>Create clean invoices and quotations in minutes. No account required for this starter version. Made for freelancers, creators and small businesses in Kenya and beyond.</p>
+  <div class="hero-actions"><button class="btn btn-primary" onclick="scrollToBuilder()">Create an invoice free →</button><a class="btn btn-outline" href="#templates" style="text-decoration:none">Explore templates</a></div>
+  <div class="fine">Free to use · Print or save as PDF · Works on mobile</div>
+ </div>
+ <div class="demo-card" aria-label="Invoice preview example">
+  <div class="demo-top"><div><div class="demo-label">Invoice from</div><strong>Your Business</strong><div class="fine">Nairobi, Kenya</div></div><div style="text-align:right"><div class="demo-label">Invoice</div><strong>#BK-001</strong><div class="fine">Due in 7 days</div></div></div>
+  <div class="demo-lines"><div class="demo-line"><span>Website design</span><strong>KSh 8,000</strong></div><div class="demo-line"><span>Brand starter kit</span><strong>KSh 2,500</strong></div></div>
+  <div class="demo-total"><div class="demo-label">Total due</div><strong>KSh 10,500</strong><div class="fine">Thank you for your business.</div></div>
+ </div>
  </div>
 </section>
 <section class="section" id="features">
  <div class="container"><div class="section-head"><h2>Less admin. More business.</h2><p>Everything you need to create a clear business document without wrestling with spreadsheets.</p></div>
-  <div class="features">
-   <article class="feature"><div class="feature-icon">🧾</div><h3>Invoices and quotations</h3><p>Switch document type, add items, set quantities and calculate totals automatically.</p></article>
-   <article class="feature"><div class="feature-icon">📄</div><h3>Save as PDF</h3><p>Print your document or choose “Save as PDF” from your browser’s print menu.</p></article>
-   <article class="feature"><div class="feature-icon">🇰🇪</div><h3>Kenya-friendly</h3><p>Use Kenyan shillings or switch currency for international clients.</p></article>
-  </div>
+ <div class="features">
+  <article class="feature"><div class="feature-icon">🧾</div><h3>Invoices and quotations</h3><p>Switch document type, add items, set quantities and calculate totals automatically.</p></article>
+  <article class="feature"><div class="feature-icon">📄</div><h3>Save as PDF</h3><p>Print your document or choose “Save as PDF” from your browser’s print menu.</p></article>
+  <article class="feature"><div class="feature-icon">🇰🇪</div><h3>Kenya-friendly</h3><p>Use Kenyan shillings or switch currency for international clients.</p></article>
+ </div>
  </div>
 </section>
 <section class="section" id="builder" style="padding-top:20px">
  <div class="container">
-  <div class="section-head"><h2>Create your document</h2><p>Enter your details below. The preview updates as you type.</p></div>
-  <div class="builder-wrap">
-   <div class="panel builder-panel">
-    <div class="panel-title"><h2>Document details</h2><span class="pill">Free</span></div>
-    <div class="type-toggle"><button id="invoiceTab" class="active" onclick="setDocType('invoice')">Invoice</button><button id="quoteTab" onclick="setDocType('quote')">Quotation</button></div>
-    <div class="field-grid" style="margin-top:16px">
-     <div class="field"><label for="currency">Currency</label><select id="currency" onchange="updatePreview()"><option value="KES">KES — Kenyan shilling</option><option value="USD">USD — US dollar</option><option value="GBP">GBP — British pound</option><option value="EUR">EUR — Euro</option></select></div>
-     <div class="field"><label for="docNumber">Document number</label><input id="docNumber" value="BK-001" oninput="updatePreview()"></div>
-    </div>
-    <h3 style="font-size:1rem;margin:8px 0 12px">Your business</h3>
-    <div class="field-grid">
-     <div class="field"><label for="businessName">Business name *</label><input id="businessName" placeholder="e.g. Acme Studio" value="Your Business" oninput="updatePreview()"></div>
-     <div class="field"><label for="businessEmail">Email or phone</label><input id="businessEmail" placeholder="you@example.com" oninput="updatePreview()"></div>
-    </div>
-    <div class="field"><label for="businessAddress">Business address (optional)</label><input id="businessAddress" placeholder="Town, country" oninput="updatePreview()"></div>
-    <h3 style="font-size:1rem;margin:8px 0 12px">Customer</h3>
-    <div class="field-grid">
-     <div class="field"><label for="clientName">Customer / company *</label><input id="clientName" placeholder="Customer name" value="Sample Customer" oninput="updatePreview()"></div>
-     <div class="field"><label for="clientEmail">Customer email (optional)</label><input id="clientEmail" placeholder="customer@example.com" oninput="updatePreview()"></div>
-    </div>
-    <div class="field"><label for="clientAddress">Customer address (optional)</label><input id="clientAddress" placeholder="Customer town or address" oninput="updatePreview()"></div>
-    <div class="field-grid">
-     <div class="field"><label for="issueDate">Issue date</label><input id="issueDate" type="date" oninput="updatePreview()"></div>
-     <div class="field"><label for="dueDate" id="dueLabel">Due date</label><input id="dueDate" type="date" oninput="updatePreview()"></div>
-    </div>
-    <h3 style="font-size:1rem;margin:8px 0 8px">Items / services</h3>
-    <div class="items-head"><span>Description</span><span>Qty</span><span>Price</span><span></span></div>
-    <div id="items"></div>
-    <button class="btn btn-soft btn-small add-row" onclick="addItem()">＋ Add item</button>
-    <div class="field-grid">
-     <div class="field"><label for="taxRate">Tax (%) — if applicable</label><input id="taxRate" type="number" min="0" max="100" step="0.01" value="0" oninput="updatePreview()"></div>
-     <div class="field"><label for="discount">Discount (amount)</label><input id="discount" type="number" min="0" step="0.01" value="0" oninput="updatePreview()"></div>
-    </div>
-    <div class="field"><label for="notes">Notes / payment terms</label><textarea id="notes" placeholder="Thank you for your business. Add your payment terms here." oninput="updatePreview()">Thank you for your business.</textarea></div>
-    <div class="note-box">Tax is optional and defaults to 0%. Check the tax rules that apply to your business before charging tax. This tool does not calculate statutory tax advice.</div>
-    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:16px"><button class="btn btn-primary" onclick="printDocument()">Print / Save PDF</button><button class="btn btn-outline" onclick="resetForm()">Reset</button></div>
-   </div>
-   <div class="preview" id="documentPreview">
-    <div class="preview-toolbar"><strong>Live preview</strong><button class="btn btn-outline btn-small" onclick="printDocument()">⇩ Save PDF</button></div>
-    <div class="preview-paper" id="paper"></div>
-   </div>
+ <div class="section-head"><h2>Create your document</h2><p>Enter your details below. The preview updates as you type.</p></div>
+ <div class="builder-wrap">
+  <div class="panel builder-panel">
+  <div class="panel-title"><h2>Document details</h2><span class="pill">Free</span></div>
+  <div class="type-toggle"><button id="invoiceTab" class="active" onclick="setDocType('invoice')">Invoice</button><button id="quoteTab" onclick="setDocType('quote')">Quotation</button></div>
+  <div class="field-grid" style="margin-top:16px">
+   <div class="field"><label for="currency">Currency</label><select id="currency" onchange="updatePreview()"><option value="KES">KES — Kenyan shilling</option><option value="USD">USD — US dollar</option><option value="GBP">GBP — British pound</option><option value="EUR">EUR — Euro</option></select></div>
+   <div class="field"><label for="docNumber">Document number</label><input id="docNumber" value="BK-001" oninput="updatePreview()"></div>
   </div>
+  <h3 style="font-size:1rem;margin:8px 0 12px">Your business</h3>
+  <div class="field-grid">
+   <div class="field"><label for="businessName">Business name *</label><input id="businessName" placeholder="e.g. Acme Studio" value="Your Business" oninput="updatePreview()"></div>
+   <div class="field"><label for="businessEmail">Email or phone</label><input id="businessEmail" placeholder="you@example.com" oninput="updatePreview()"></div>
+  </div>
+  <div class="field"><label for="businessAddress">Business address (optional)</label><input id="businessAddress" placeholder="Town, country" oninput="updatePreview()"></div>
+  <h3 style="font-size:1rem;margin:8px 0 12px">Customer</h3>
+  <div class="field-grid">
+   <div class="field"><label for="clientName">Customer / company *</label><input id="clientName" placeholder="Customer name" value="Sample Customer" oninput="updatePreview()"></div>
+   <div class="field"><label for="clientEmail">Customer email (optional)</label><input id="clientEmail" placeholder="customer@example.com" oninput="updatePreview()"></div>
+  </div>
+  <div class="field"><label for="clientAddress">Customer address (optional)</label><input id="clientAddress" placeholder="Customer town or address" oninput="updatePreview()"></div>
+  <div class="field-grid">
+   <div class="field"><label for="issueDate">Issue date</label><input id="issueDate" type="date" oninput="updatePreview()"></div>
+   <div class="field"><label for="dueDate" id="dueLabel">Due date</label><input id="dueDate" type="date" oninput="updatePreview()"></div>
+  </div>
+  <h3 style="font-size:1rem;margin:8px 0 8px">Items / services</h3>
+  <div class="items-head"><span>Description</span><span>Qty</span><span>Price</span><span></span></div>
+  <div id="items"></div>
+  <button class="btn btn-soft btn-small add-row" onclick="addItem()">＋ Add item</button>
+  <div class="field-grid">
+   <div class="field"><label for="taxRate">Tax (%) — if applicable</label><input id="taxRate" type="number" min="0" max="100" step="0.01" value="0" oninput="updatePreview()"></div>
+   <div class="field"><label for="discount">Discount (amount)</label><input id="discount" type="number" min="0" step="0.01" value="0" oninput="updatePreview()"></div>
+  </div>
+  <div class="field"><label for="notes">Notes / payment terms</label><textarea id="notes" placeholder="Thank you for your business. Add your payment terms here." oninput="updatePreview()">Thank you for your business.</textarea></div>
+  <div class="note-box">Tax is optional and defaults to 0%. Check the tax rules that apply to your business before charging tax. This tool does not calculate statutory tax advice.</div>
+  <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:16px"><button class="btn btn-primary" onclick="printDocument()">Print / Save PDF</button><button class="btn btn-outline" onclick="resetForm()">Reset</button></div>
+  </div>
+  <div class="preview" id="documentPreview">
+  <div class="preview-toolbar"><strong>Live preview</strong><button class="btn btn-outline btn-small" onclick="printDocument()">⇩ Save PDF</button></div>
+  <div class="preview-paper" id="paper"></div>
+  </div>
+ </div>
  </div>
 </section>
 <section class="section" id="templates">
  <div class="container"><div class="section-head"><h2>Choose your style</h2><p>Use the free template now. Premium packs are shown as a preview for a future paid version.</p></div>
-  <div class="templates">
-   <article class="template-card"><div class="template-preview"><div class="mini-head"></div><div class="mini-line"></div><div class="mini-line short"></div><div class="mini-line"></div><div class="mini-total"></div></div><h3>Classic Purple</h3><p>Clean, professional and easy to read.</p><div class="template-actions"><span class="price">Free</span><button class="btn btn-soft btn-small" onclick="chooseTemplate('classic')">Use template</button></div></article>
-   <article class="template-card"><div class="template-preview" style="background:#f0faf5"><span class="locked">Premium preview</span><div class="mini-head" style="background:#13805c"></div><div class="mini-line" style="background:#cce9da"></div><div class="mini-line short" style="background:#cce9da"></div><div class="mini-line" style="background:#cce9da"></div><div class="mini-total" style="background:#c8f0dd"></div></div><h3>Emerald Business</h3><p>For consultants and established small businesses.</p><div class="template-actions"><span class="price">KSh 250</span><button class="btn btn-primary btn-small" onclick="openCheckout()">Buy pack</button></div></article>
-   <article class="template-card"><div class="template-preview" style="background:#fff8ef"><span class="locked">Premium preview</span><div class="mini-head" style="background:#bd6c25"></div><div class="mini-line" style="background:#f0d9bf"></div><div class="mini-line short" style="background:#f0d9bf"></div><div class="mini-line" style="background:#f0d9bf"></div><div class="mini-total" style="background:#f8dfc1"></div></div><h3>Warm Minimal</h3><p>A softer style for creatives and freelancers.</p><div class="template-actions"><span class="price">KSh 150</span><button class="btn btn-primary btn-small" onclick="openCheckout()">Buy pack</button></div></article>
-  </div>
+ <div class="templates">
+  <article class="template-card"><div class="template-preview"><div class="mini-head"></div><div class="mini-line"></div><div class="mini-line short"></div><div class="mini-line"></div><div class="mini-total"></div></div><h3>Classic Purple</h3><p>Clean, professional and easy to read.</p><div class="template-actions"><span class="price">Free</span><button class="btn btn-soft btn-small" onclick="chooseTemplate('classic')">Use template</button></div></article>
+  <article class="template-card"><div class="template-preview" style="background:#f0faf5"><span class="locked">Premium preview</span><div class="mini-head" style="background:#13805c"></div><div class="mini-line" style="background:#cce9da"></div><div class="mini-line short" style="background:#cce9da"></div><div class="mini-line" style="background:#cce9da"></div><div class="mini-total" style="background:#c8f0dd"></div></div><h3>Emerald Business</h3><p>For consultants and established small businesses.</p><div class="template-actions"><span class="price">KSh 250</span><button class="btn btn-primary btn-small" onclick="openCheckout()">Buy pack</button></div></article>
+  <article class="template-card"><div class="template-preview" style="background:#fff8ef"><span class="locked">Premium preview</span><div class="mini-head" style="background:#bd6c25"></div><div class="mini-line" style="background:#f0d9bf"></div><div class="mini-line short" style="background:#f0d9bf"></div><div class="mini-line" style="background:#f0d9bf"></div><div class="mini-total" style="background:#f8dfc1"></div></div><h3>Warm Minimal</h3><p>A softer style for creatives and freelancers.</p><div class="template-actions"><span class="price">KSh 150</span><button class="btn btn-primary btn-small" onclick="openCheckout()">Buy pack</button></div></article>
+ </div>
  </div>
 </section>
 <section class="section" id="faq">
  <div class="container"><div class="section-head"><h2>Before you get started</h2><p>Clear expectations make a trustworthy tool.</p></div><div class="faq-grid">
-  <details><summary>Is BizKipe free?</summary><p>The invoice and quotation generator in this starter website is free. The invoice and quotation generator is free. Premium templates are KSh 150 and KSh 250 with instant M-Pesa checkout and download.</p></details>
-  <details><summary>How do I save my document?</summary><p>Choose “Print / Save PDF”, then select “Save as PDF” in your browser’s print dialog. On mobile, this option may be under the share or print menu.</p></details>
-  <details><summary>Does it send invoices to customers?</summary><p>This version creates a professional printable PDF in your browser. You can then send it via WhatsApp or email to your customer. Save as PDF and share instantly.</p></details>
-  <details><summary>Can I accept M-Pesa?</summary><p>Yes! BizKipe accepts M-Pesa. Click Buy pack, enter your phone number, and confirm the M-Pesa prompt on your phone. Download is instant after payment.</p></details>
+ <details><summary>Is BizKipe free?</summary><p>The invoice and quotation generator is free. Premium templates are KSh 150 and KSh 250 with instant M-Pesa checkout and download.</p></details>
+ <details><summary>How do I save my document?</summary><p>Choose “Print / Save PDF”, then select “Save as PDF” in your browser’s print dialog. On mobile, this option may be under the share or print menu.</p></details>
+ <details><summary>Does it send invoices to customers?</summary><p>This version creates a professional printable PDF in your browser. You can then send it via WhatsApp or email to your customer. Save as PDF and share instantly.</p></details>
+ <details><summary>Can I accept M-Pesa?</summary><p>Yes! BizKipe accepts M-Pesa. Click Buy pack, enter your phone number, and confirm the M-Pesa prompt on your phone. Download is instant after payment.</p></details>
  </div></div>
 </section>
 </main>
 <footer class="footer"><div class="container footer-row"><div><div class="logo" style="color:#fff"><span class="logo-mark">B</span><span>BizKipe</span></div><p>Simple business documents for people building something of their own. Simple, secure M-Pesa payments. Instant downloads. Trusted by businesses in Kenya.</p></div><div><strong>Build with trust</strong><p>Use accurate business details, agree payment terms with your customers, and keep copies of your records.</p></div></div><div style="display:flex;flex-wrap:wrap;gap:14px;margin-top:14px;font-size:.84rem"><a style="color:#eae5fa" href="/terms.html">Terms</a><a style="color:#eae5fa" href="/privacy.html">Privacy</a><a style="color:#eae5fa" href="/refunds.html">Refund policy</a><a style="color:#eae5fa" href="/support.html">Support</a></div></footer>
 <div id="checkoutModal" class="checkout-modal hidden" role="dialog" aria-modal="true" aria-labelledby="checkoutTitle">
  <div class="checkout-box">
-  <button class="checkout-close" onclick="closeCheckout()" aria-label="Close checkout">×</button>
-  <h2 id="checkoutTitle">Get the Premium Template Pack</h2>
-  <form id="checkoutForm" onsubmit="startCheckout(event)">
-   <div class="field"><label for="buyerName">Your name</label><input id="buyerName" required maxlength="100" autocomplete="name" placeholder="Full name"></div>
-   <div class="field"><label for="buyerEmail">Email address</label><input id="buyerEmail" required type="email" maxlength="254" autocomplete="email" placeholder="you@example.com"></div>
-   <div class="field"><label for="buyerPhone">M-Pesa phone number</label><input id="buyerPhone" required inputmode="tel" autocomplete="tel" placeholder="07XXXXXXXX or 2547XXXXXXXX"></div>
-   <button id="payButton" class="btn btn-primary" type="submit" style="width:100%">Continue to M-Pesa</button>
-   <p class="fine">Do not share your M-Pesa PIN. BizKipe will never ask you to enter it on this website.</p>
-  </form>
-  <div id="checkoutStatus" class="note-box hidden" role="status" aria-live="polite"></div>
+ <button class="checkout-close" onclick="closeCheckout()" aria-label="Close checkout">×</button>
+ <h2 id="checkoutTitle">Get the Premium Template Pack</h2>
+ <form id="checkoutForm" onsubmit="startCheckout(event)">
+  <div class="field"><label for="buyerName">Your name</label><input id="buyerName" required maxlength="100" autocomplete="name" placeholder="Full name"></div>
+  <div class="field"><label for="buyerEmail">Email address</label><input id="buyerEmail" required type="email" maxlength="254" autocomplete="email" placeholder="you@example.com"></div>
+  <div class="field"><label for="buyerPhone">M-Pesa phone number</label><input id="buyerPhone" required inputmode="tel" autocomplete="tel" placeholder="07XXXXXXXX or 2547XXXXXXXX"></div>
+  <button id="payButton" class="btn btn-primary" type="submit" style="width:100%">Continue to M-Pesa</button>
+  <p class="fine">Do not share your M-Pesa PIN. BizKipe will never ask you to enter it on this website.</p>
+ </form>
+ <div id="checkoutStatus" class="note-box hidden" role="status" aria-live="polite"></div>
  </div>
 </div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
