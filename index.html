@@ -151,7 +151,7 @@ function printDocument(){updatePreview();window.print()}
 function resetForm(){if(!confirm('Clear the current document and start again?'))return;$('businessName').value='';$('businessEmail').value='';$('businessAddress').value='';$('clientName').value='';$('clientEmail').value='';$('clientAddress').value='';$('docNumber').value='BK-001';$('taxRate').value='0';$('discount').value='0';$('notes').value='Thank you for your business.';$('items').innerHTML='';addItem();updatePreview()}
 function chooseTemplate(t){currentTemplate=t;showToast('Classic Purple is selected. More visual templates will be added in a future update.')}
 let activeOrder=null, pollHandle=null;
-function openCheckout(){$('checkoutModal').classList.remove('hidden');$('checkoutStatus').classList.add('hidden');$('checkoutStatus').textContent='';$('buyerName').focus()}
+function openCheckout(productId){ window.selectedProductId = productId || 'premium-template-pack';$('checkoutModal').classList.remove('hidden');$('checkoutStatus').classList.add('hidden');$('checkoutStatus').textContent='';$('buyerName').focus()}
 function closeCheckout(){$('checkoutModal').classList.add('hidden');if(pollHandle){clearTimeout(pollHandle);pollHandle=null}}
 function setCheckoutStatus(message){$('checkoutStatus').textContent=message;$('checkoutStatus').classList.remove('hidden')}
 async function startCheckout(event){event.preventDefault();const button=$('payButton');button.disabled=true;button.textContent='Starting secure checkout…';
