@@ -2,6 +2,7 @@ const crypto = require('crypto');
 const { json, sha256, normalizePhone, requireMethod, supabase, darajaAccessToken, kenyaTimestamp } = require('../_lib');
 
 
+  
   const PRODUCTS = {
     'emerald-business': { name: 'Emerald Business', amount: 250, currency: 'KES' },
     'warm-minimal': { name: 'Warm Minimal', amount: 250, currency: 'KES' } // FIXED EMERALD 250,
@@ -11,6 +12,7 @@ const { json, sha256, normalizePhone, requireMethod, supabase, darajaAccessToken
     'emerald': { name: 'Emerald Business', amount: 250, currency: 'KES' },
     'warm': { name: 'Warm Minimal', amount: 250, currency: 'KES' } // FIXED EMERALD 250,
   };
+
 
 
 module.exports = async function handler(req, res) {
@@ -23,6 +25,8 @@ module.exports = async function handler(req, res) {
     if (!product) {
       console.log('Unknown productId', productId, 'using fallback 150');
       product = { name: productId, amount: productId.includes('warm') ? 150 : 250, currency: 'KES' } // FIXED
+  // OLD LINE BELOW DISABLED: product = { name: productId, amount: productId.includes('warm') ? 150 : 250, currency: 'KES' } // FIXED
+  // OLD LINE BELOW DISABLED: product = { name: productId, amount: productId.includes('warm') ? 150 : 250, currency: 'KES' } // FIXED
   // OLD LINE BELOW DISABLED: product = { name: productId, amount: 250, currency: 'KES' } // FIXED EMERALD 250;
     }
     const name = String(body.name || body.customerName || '').trim().slice(0, 100);
