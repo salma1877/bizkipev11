@@ -165,5 +165,25 @@ function scrollToBuilder(){$('builder').scrollIntoView({behavior:'smooth'});setT
 function setDefaultDates(){const now=new Date(),due=new Date(now);due.setDate(due.getDate()+7);const fmt=d=>`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;$('issueDate').value=fmt(now);$('dueDate').value=fmt(due)}
 setDefaultDates();addItem('Service or product',1,0);updatePreview();
 </script>
+
+<script id="price-fix">
+document.addEventListener('DOMContentLoaded', () => {
+  const buyBtns = [...document.querySelectorAll('button')].filter(b => b.textContent.trim().toLowerCase() === 'buy pack');
+  console.log('Found buy buttons:', buyBtns.length);
+  if (buyBtns[0]) {
+    buyBtns[0].addEventListener('click', () => {
+      window.currentPrice = 250;
+      console.log('Emerald selected - 250');
+    }, true);
+  }
+  if (buyBtns[1]) {
+    buyBtns[1].addEventListener('click', () => {
+      window.currentPrice = 150;
+      console.log('Warm Minimal selected - 150');
+    }, true);
+  }
+});
+</script>
+
 </body>
 </html>
