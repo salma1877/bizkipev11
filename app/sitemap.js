@@ -1,5 +1,5 @@
 export default function sitemap() {
-  const baseUrl = 'https://bizkipe.vercel.app'
+  const baseUrl = 'https://bizkipev11.vercel.app'
   return [
     { url: baseUrl },
     { url: baseUrl + '/premium' },

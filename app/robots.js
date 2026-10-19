@@ -1,7 +1,6 @@
 export default function robots() {
-  const baseUrl = 'https://bizkipe.vercel.app'
   return {
     rules: { userAgent: '*', allow: '/' },
-    sitemap: baseUrl + '/sitemap.xml',
+    sitemap: 'https://bizkipev11.vercel.app/sitemap.xml',
   }
 }
