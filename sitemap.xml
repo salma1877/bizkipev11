@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Replace https://YOUR-DOMAIN.example with your real deployed domain before submitting to search engines. -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://YOUR-DOMAIN.example/</loc></url>
-  <url><loc>https://YOUR-DOMAIN.example/terms.html</loc></url>
-  <url><loc>https://YOUR-DOMAIN.example/privacy.html</loc></url>
-  <url><loc>https://YOUR-DOMAIN.example/refunds.html</loc></url>
-  <url><loc>https://YOUR-DOMAIN.example/support.html</loc></url>
-  <url><loc>https://YOUR-DOMAIN.example/dashboard.html</loc></url>
+<url><loc>https://bizkipev11.vercel.app/</loc></url>
+<url><loc>https://bizkipev11.vercel.app/premium</loc></url>
+<url><loc>https://bizkipev11.vercel.app/about</loc></url>
 </urlset>
