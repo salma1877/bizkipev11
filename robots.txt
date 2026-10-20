@@ -1,4 +1,3 @@
 User-agent: *
 Allow: /
-Disallow: /admin.html
-Disallow: /api/
+Sitemap: https://bizkipev11.vercel.app/sitemap.xml
