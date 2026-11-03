@@ -16,10 +16,16 @@ export default async function handler(req, res) {
     const id = q.orderId || q.order_id || q.id;
     if(!id) return json(res,400,{error:'Missing order id'});
     
-    // FIXED: Signature check removed for now - we check paid status instead
-    const rows = await supabase(`orders?id=eq.${encodeURIComponent(id)}&select=id,status,product_id`, { method: 'GET' });
-    const order = rows && rows[0];
-    if(!order || !['paid','fulfilled'].includes(order.status) || order.product_id !== 'premium-template-pack') return json(res,403,{error:'This product is not available until payment is confirmed. Order status: '+(order?order.status:'not found')});
+    // The order must be a real UUID, paid for in full, and carry a genuine M-Pesa receipt.
+    if(!/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(String(id))) return json(res,400,{error:'Invalid order reference.'});
+    const rows = await supabase(`orders?id=eq.${encodeURIComponent(id)}&select=id,status,product_id,amount,paid_amount,mpesa_receipt`, { method: 'GET' });
+    const order = Array.isArray(rows) ? rows[0] : null;
+    const notReady = () => json(res,403,{error:'This product is not available until payment is confirmed.'});
+    if(!order || !['paid','fulfilled'].includes(order.status) || order.product_id !== 'premium-template-pack') return notReady();
+    const receipt = String(order.mpesa_receipt || '').trim();
+    const amount = Number(order.amount);
+    const paidAmount = Number(order.paid_amount);
+    if(!/^[A-Z0-9]{8,12}$/i.test(receipt) || !Number.isFinite(amount) || amount < 250 || !Number.isFinite(paidAmount) || paidAmount < amount) return notReady();
     
     const projectUrl = process.env.SUPABASE_URL;
     const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
