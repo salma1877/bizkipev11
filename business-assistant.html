@@ -1,0 +1,82 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><meta name="theme-color" content="#5b35d5"><meta name="description" content="Ask questions about your recorded BizKipe business data."><title>Business assistant · BizKipe</title><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="/supabase-config.js"></script><style>
+:root{--brand:#5b35d5;--ink:#211d32;--muted:#716b82;--line:#e8e4f0;--bg:#f7f6fb;--green:#16794b;--red:#a43a32}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.55 system-ui}.wrap{width:min(920px,94%);margin:auto}.top{background:#fff;border-bottom:1px solid var(--line)}.nav{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding:14px 0}.btn{border:1px solid var(--line);border-radius:10px;padding:10px 14px;background:#fff;color:var(--ink);font-weight:700;text-decoration:none;cursor:pointer}.primary{background:var(--brand);border-color:var(--brand);color:#fff}main{padding:25px 0 45px}.card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px;margin:14px 0}.muted{color:var(--muted)}.field label{font-weight:600}.field{display:flex;flex-direction:column;gap:6px;flex:1}.field input,.field select{width:100%;padding:12px;border:1px solid #dcd7e9;border-radius:10px;font:inherit}.row{display:flex;gap:10px;align-items:end;flex-wrap:wrap}.status{padding:11px;border-radius:10px;background:#f0edff;margin:10px 0;overflow-wrap:anywhere}.error{background:#fff0ef;color:#922f27}.chat{display:grid;gap:12px;margin:16px 0}.bubble{padding:14px 16px;border-radius:14px;max-width:94%;white-space:pre-wrap;overflow-wrap:anywhere}.assistant{background:#f3f0fb;border:1px solid var(--line)}.user{background:#5b35d5;color:#fff;margin-left:auto}.suggestions{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}.suggestions button{border:1px solid #dcd7e9;background:#fff;border-radius:99px;padding:8px 11px;color:var(--ink);cursor:pointer}.small{font-size:.86rem}.disclaimer{border-left:3px solid #c5b8f4;padding:9px 12px;background:#faf9ff}[hidden],.hidden{display:none!important}.suggestions button{font:inherit}@media(max-width:600px){.row>*{width:100%}.bubble{max-width:100%}.card{padding:14px}}
+</style></head><body><header class="top"><div class="wrap nav"><strong>BizKipe · Business assistant</strong><div class="row"><a class="btn" href="/dashboard.html">Dashboard</a><a class="btn" href="/business-intelligence.html">Business intelligence</a><button id="signOut" class="btn" hidden>Sign out</button></div></div></header><main class="wrap"><section id="auth" class="card"><h1>Sign in to your business</h1><div class="row"><div class="field"><label for="email">Email</label><input id="email" type="email" autocomplete="username"></div><div class="field"><label for="password">Password</label><input id="password" type="password" autocomplete="current-password"></div><button id="signIn" class="btn primary">Sign in</button></div><div id="authMsg" class="status" hidden></div></section><section id="app" hidden><h1>Ask your BizKipe business assistant</h1><p class="muted">Ask about sales, expenses, recorded margin, customers, stock sales or unpaid entries. Answers are calculated from your account's saved records.</p><div class="card"><div class="row"><div class="field"><label for="period">Data period</label><select id="period"><option value="3">Last 3 months</option><option value="6" selected>Last 6 months</option><option value="12">Last 12 months</option><option value="all">All available records</option></select></div><div class="field"><label for="currency">Currency</label><select id="currency"><option>KES</option><option>USD</option><option>GBP</option><option>EUR</option><option value="all">All currencies (counts only)</option></select></div><button id="reload" class="btn">Refresh data</button></div><div id="loadMsg" class="status" role="status">Sign in to load your records.</div></div><div class="card"><h2>Try asking</h2><div class="suggestions"><button data-q="How much did I sell?">How much did I sell?</button><button data-q="What are my expenses?">What are my expenses?</button><button data-q="What is my gross margin?">What is my gross margin?</button><button data-q="Who are my top customers?">Who are my top customers?</button><button data-q="Which products sold most?">Which products sold most?</button><button data-q="Show unpaid sales">Show unpaid sales</button><button data-q="What should I focus on?">What should I focus on?</button></div><div id="chat" class="chat" aria-live="polite"><div class="bubble assistant">Hello! I can help explain the business records available in this BizKipe account. Choose a suggested question or type your own.</div></div><form id="askForm" class="row"><div class="field"><label for="question">Your question</label><input id="question" maxlength="240" placeholder="e.g. Which customers bought the most?" autocomplete="off" required></div><button class="btn primary" type="submit">Ask</button></form></div><p class="small muted disclaimer">Transparency: this release uses a built-in, rule-based assistant. It does not send your business data to an AI provider and does not use an external AI API. It can only answer supported questions from records it successfully loads. It is not an accountant or financial adviser.</p><div class="small muted">Data limits: figures may be incomplete if records are missing. Margin is sales less entered cost amounts, not net profit. Amounts still to receive are the sale amount less any amount you recorded as received. Customer names are grouped ignoring capital letters and extra spaces. Currency totals are never combined across different currencies. No M-Pesa or bank payment verification is performed.</div></section></main><script>
+(()=>{'use strict';const $=id=>document.getElementById(id);let db,user,financial=[],stock=[],loaded=false;
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const currency=()=>$('currency').value;
+const money=(n,c)=>{try{return new Intl.NumberFormat('en-KE',{style:'currency',currency:c,maximumFractionDigits:0}).format(Number(n)||0)}catch{return c+' '+Math.round(Number(n)||0)}};
+const ymd=d=>d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+const dayOf=v=>{if(!v)return '';const s=String(v);return s.length>10?ymd(new Date(s)):s};
+const startKey=n=>{if(!n)return null;const d=new Date();d.setDate(1);d.setMonth(d.getMonth()-(n-1));return ymd(d)};
+const mon=k=>new Date(k+'T00:00:00').toLocaleDateString('en',{month:'short',year:'numeric'});
+function periodText(){const n=$('period').value==='all'?null:Number($('period').value);return n?'from '+mon(startKey(n))+' to '+mon(ymd(new Date()))+' (including the current month)':'across all available records'}
+const inPeriod=(a,field)=>{const s=startKey($('period').value==='all'?null:Number($('period').value));return s?a.filter(r=>{const d=dayOf(r[field]);return d&&d>=s}):a};
+function say(text,who='assistant'){const d=document.createElement('div');d.className='bubble '+who;d.textContent=text;$('chat').appendChild(d);d.scrollIntoView({block:'nearest',behavior:'smooth'})}
+function show(el,msg,bad=false){el.textContent=msg;el.className='status'+(bad?' error':'');el.hidden=false}
+async function load(){show($('loadMsg'),'Loading your saved business records…');loaded=false;
+const [f,s]=await Promise.all([
+db.from('bizkipe_financial_entries').select('id,entry_type,description,customer_or_payee,amount,amount_received,cost_amount,currency,payment_status,entry_date,created_at').eq('user_id',user.id).order('entry_date',{ascending:true}).limit(10000),
+db.from('bizkipe_inventory_sales').select('item_id,item_name,quantity,created_at,sale_ref').eq('user_id',user.id).order('created_at',{ascending:false}).limit(10000)]);
+if(f.error){financial=[];stock=[];show($('loadMsg'),'Could not load your financial records right now. Please refresh and try again. If it keeps happening, the financial dashboard has not been set up yet.',true);return}
+financial=f.data||[];stock=s.error?[]:(s.data||[]);loaded=true;
+show($('loadMsg'),`Loaded ${financial.length} financial ${financial.length===1?'entry':'entries'} and ${stock.length} stock sale ${stock.length===1?'record':'records'}. ${s.error?'Stock records were unavailable, so stock answers may be incomplete.':'Ready for questions.'}`)}
+function groupCustomers(sales){const g={};sales.forEach(r=>{const raw=String(r.customer_or_payee||'').trim().replace(/\s+/g,' '),k=raw?raw.toLowerCase():'__none';g[k]??={name:raw||'Unspecified customer',total:0,count:0,none:!raw};g[k].total+=Number(r.amount||0);g[k].count++});return Object.values(g)}
+function answer(q){
+if(!loaded)return 'Your records are not loaded yet. Press "Refresh data" and ask again.';
+const text=q.toLowerCase(),c=currency(),all=c==='all',when=periodText();
+let rows=financial.filter(r=>{const s=$('period').value==='all'?null:startKey(Number($('period').value));const d=dayOf(r.entry_date||r.created_at);return !s||(d&&d>=s)});
+if(!all)rows=rows.filter(r=>(r.currency||'KES')===c);
+const sales=rows.filter(r=>r.entry_type==='sale'),expenses=rows.filter(r=>r.entry_type==='expense');
+const sum=(a,f)=>a.reduce((n,r)=>n+(Number(f(r))||0),0),st=sum(sales,r=>r.amount),ex=sum(expenses,r=>r.amount),cost=sum(sales,r=>r.cost_amount);
+const unpaid=sales.filter(r=>['unpaid','pending','partial'].includes(String(r.payment_status||'').toLowerCase()));
+const owed=sum(unpaid,r=>Math.max(0,(Number(r.amount)||0)-(Number(r.amount_received)||0)));
+const noMoney='You have chosen all currencies, and I never add different currencies together. Choose one currency above to see money totals.';
+if(/help|what can|how do i ask/.test(text))return 'Ask about recorded sales, expenses, gross margin, top customers, stock units sold, unpaid sales, or what to focus on. Try one of the suggestions above.';
+if(/customer|client|who bought|top buyer|buyers/.test(text)){
+const top=groupCustomers(sales).sort((a,b)=>b.total-a.total).slice(0,5);
+if(!top.length)return 'No sales were found '+when+'.';
+if(all)return 'Customers with the most sales records '+when+':\n'+top.sort((a,b)=>b.count-a.count).map((x,i)=>`${i+1}. ${x.name} — ${x.count} ${x.count===1?'record':'records'}`).join('\n')+'\n'+noMoney;
+return 'Top customers by recorded sales '+when+':\n'+top.map((x,i)=>`${i+1}. ${x.name} — ${money(x.total,c)}`).join('\n')+'\nNames are grouped ignoring capital letters and extra spaces; other spelling differences count as different customers.'}
+if(/product|stock|item|best.sell|units sold|sold most/.test(text)){
+const items={};inPeriod(stock,'created_at').forEach(r=>{const k=r.item_id||r.item_name||'unnamed';items[k]??={name:r.item_name||'Unnamed item',qty:0};items[k].qty+=Number(r.quantity)||0});
+const top=Object.values(items).sort((a,b)=>b.qty-a.qty).slice(0,5);
+return top.length?'Most units recorded as sold '+when+':\n'+top.map((x,i)=>`${i+1}. ${x.name} — ${x.qty} ${x.qty===1?'unit':'units'}`).join('\n')+'\nThis counts units, not sales value or profit.':'No stock sale records were found '+when+'. Stock answers need sales recorded through the inventory module.'}
+if(/unpaid|pending|not paid|outstanding|owe|owed/.test(text)){
+if(all)return `${unpaid.length} sales ${unpaid.length===1?'record is':'records are'} marked unpaid, pending or partly paid ${when}. ${noMoney}`;
+return unpaid.length?`${unpaid.length} sales ${unpaid.length===1?'record is':'records are'} marked unpaid, pending or partly paid ${when}, with about ${money(owed,c)} still to receive (sale amount less any amount received that you recorded). Check your payment records before following up.`:'No unpaid, pending or partly paid sales were found '+when+'.'}
+if(/expense|spend|spent|spending|costs/.test(text)){
+if(all)return `${expenses.length} expense ${expenses.length===1?'record was':'records were'} found ${when}. ${noMoney}`;
+return `Recorded expenses ${when}: ${money(ex,c)} across ${expenses.length} ${expenses.length===1?'entry':'entries'}.`}
+if(/margin|profit|profitable|cost of goods/.test(text)){
+if(all)return noMoney;
+if(!sales.length)return 'No sales were found '+when+', so there is no margin to show.';
+if(!cost)return `Your recorded sales ${when} are ${money(st,c)}, but no cost amounts were entered, so I cannot give a real margin. Add the cost of each sale to see it.`;
+const m=st-cost;return `Recorded gross margin ${when}: ${money(m,c)} (${Math.round(m/st*100)}% of sales). That is recorded sales of ${money(st,c)} less entered cost amounts of ${money(cost,c)}. It is not net profit: overheads, taxes and missing costs are not included.`}
+if(/sale|sell|sold|revenue|income|turnover/.test(text)){
+if(all)return `${sales.length} sales ${sales.length===1?'record was':'records were'} found ${when}. ${noMoney}`;
+return `Recorded sales ${when}: ${money(st,c)} across ${sales.length} ${sales.length===1?'entry':'entries'}. Recorded expenses are ${money(ex,c)} across ${expenses.length} ${expenses.length===1?'entry':'entries'}.`}
+if(/focus|advice|recommend|improve|what should|next step/.test(text)){
+const tips=[];
+if(!sales.length)tips.push('Record each sale with its date, customer, amount and cost.');
+else{
+if(unpaid.length)tips.push(`Follow up on ${unpaid.length} ${unpaid.length===1?'sale':'sales'} marked unpaid, pending or partly paid, and update the records when payments come in.`);
+if(!all){if(!cost)tips.push('Enter the cost of each sale so your margin can be worked out.');else if(st-cost<0)tips.push('Check your entries: costs are higher than sales for this period.')}
+if(sales.some(r=>!String(r.customer_or_payee||'').trim()))tips.push('Add customer names to sales that have none, so customer rankings are complete.')}
+if(!expenses.length)tips.push('Record your operating expenses to see a fuller picture.');
+if(!stock.length)tips.push('Record stock sales in the inventory module if you want product rankings.');
+if(all)tips.push('Choose one currency to see money-based answers.');
+return tips.length?'Based on the records loaded '+when+':\n• '+tips.join('\n• ')+'\nThese are prompts from your records, not professional advice.':'Your records look complete for this period. Keep recording sales, costs and expenses as they happen.'}
+return 'I could not match that question. Try asking about sales, expenses, gross margin, top customers, products sold, unpaid sales, or what to focus on.'}
+function ask(q){q=q.trim();if(!q)return;say(q,'user');say(answer(q),'assistant')}
+function enter(u){user=u;$('auth').hidden=true;$('app').hidden=false;$('signOut').hidden=false;return load()}
+$('signIn').onclick=async()=>{const r=await db.auth.signInWithPassword({email:$('email').value,password:$('password').value});if(r.error||!r.data||!r.data.user){show($('authMsg'),'Could not sign in. Check your email and password and try again.',true);return}await enter(r.data.user)};
+$('signOut').onclick=async()=>{await db.auth.signOut();location.reload()};
+$('reload').onclick=load;
+$('period').onchange=()=>show($('loadMsg'),'Period updated. Ask a question to see answers for the new period.');
+$('currency').onchange=()=>show($('loadMsg'),'Currency updated. Ask a question to see answers for that currency.');
+$('askForm').onsubmit=e=>{e.preventDefault();const q=$('question').value;$('question').value='';ask(q)};
+document.querySelectorAll('[data-q]').forEach(b=>b.onclick=()=>ask(b.dataset.q));
+try{if(!window.supabase||!window.BIZKIPE_SUPABASE_URL||String(window.BIZKIPE_SUPABASE_URL).includes('PASTE_'))throw Error('This page is not available right now. Please try again later.');
+db=window.supabase.createClient(window.BIZKIPE_SUPABASE_URL,window.BIZKIPE_SUPABASE_ANON_KEY);
+db.auth.getSession().then(async({data})=>{if(data.session)await enter(data.session.user)})}catch(e){show($('authMsg'),e.message,true)}})();
+</script></body></html>
