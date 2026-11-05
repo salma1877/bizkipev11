@@ -1,0 +1,20 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /admin
+Disallow: /dashboard
+Disallow: /automation-centre
+Disallow: /brand-studio
+Disallow: /business-
+Disallow: /customer-
+Disallow: /document-automation
+Disallow: /invoice-view
+Disallow: /loyalty-rewards
+Disallow: /profit-intelligence
+Disallow: /quotation-approvals
+Disallow: /quote-review
+Disallow: /sales-
+Disallow: /success
+Disallow: /workflow-
+
+Sitemap: https://bizkipev11.vercel.app/sitemap.xml
