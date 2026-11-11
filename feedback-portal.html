@@ -1,0 +1,50 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><meta name="referrer" content="no-referrer"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="icon" href="/favicon.ico" sizes="any"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><meta name="theme-color" content="#5b35d5"><title>BizKipe — Feedback Portal</title><script src="/supabase-config.js"></script><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><style>
+:root{--brand:#5b35d5;--ink:#211d32;--muted:#716b82;--line:#e8e4f0;--bg:#f7f6fb}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif}.wrap{width:min(760px,93%);margin:36px auto}.card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:24px;box-shadow:0 8px 30px #211d320b}.brand{font-weight:900;color:var(--brand);letter-spacing:.2px}.muted{color:var(--muted)}.field{display:grid;gap:6px;margin:15px 0}.field label{font-weight:700;font-size:.9rem}.field input,.field select,.field textarea{width:100%;border:1px solid var(--line);border-radius:10px;padding:12px;font:inherit}.field textarea{min-height:130px;resize:vertical}.btn{border:0;border-radius:10px;background:var(--brand);color:#fff;padding:12px 17px;font-weight:800;font:inherit;cursor:pointer}.btn:disabled{opacity:.6;cursor:wait}.status{padding:12px;border-radius:10px;background:#f1edff;margin:12px 0}.status.error{background:#fff0ef;color:#922f27}.status.ok{background:#eaf8f0;color:#147a55}.hidden{display:none!important}.stars{color:#956400}.foot{font-size:.82rem;color:var(--muted);margin-top:18px}
+</style></head><body><main class="wrap"><section class="card"><div class="brand">BizKipe</div><h1 id="heading">Share your feedback</h1><p class="muted">Your feedback helps this business understand what is working and what can improve. Please do not include passwords, payment details, identity numbers or other sensitive information.</p><div id="loading" class="status">Preparing feedback form…</div><form id="form" class="hidden"><div class="field"><label for="name">Your name (optional)</label><input id="name" maxlength="120" autocomplete="name" placeholder="Name"></div><div class="field"><label for="email">Email (optional)</label><input id="email" type="email" maxlength="254" autocomplete="email" placeholder="you@example.com"></div><div class="field"><label for="rating">How would you rate your experience?</label><select id="rating" required><option value="5">5 — Excellent</option><option value="4">4 — Good</option><option value="3">3 — Okay</option><option value="2">2 — Poor</option><option value="1">1 — Very poor</option></select></div><div class="field"><label for="category">What is your feedback about?</label><select id="category" required><option>Product or service</option><option>Communication</option><option>Delivery</option><option>Billing</option><option>Support</option><option>Other</option></select></div><div style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden" aria-hidden="true"><label for="website">Leave this field empty</label><input id="website" name="website" tabindex="-1" autocomplete="off"></div><div class="field"><label for="feedback">Your feedback</label><textarea id="feedback" maxlength="2000" required placeholder="Tell us about your experience…"></textarea><small class="muted">Maximum 2,000 characters.</small></div><button id="submit" class="btn" type="submit">Submit feedback</button></form><div id="message" class="status hidden" role="status"></div><p class="foot">This form is provided by the business using BizKipe. Submitting is voluntary. Contact the business directly if you need a response.</p></section></main><script>
+(function () {
+  'use strict';
+  const $ = (id) => document.getElementById(id);
+  const token = new URLSearchParams(window.location.search).get('token');
+  if (!window.supabase || !window.BIZKIPE_SUPABASE_URL || !window.BIZKIPE_SUPABASE_ANON_KEY) {
+    $('loading').textContent = 'This form is not configured. Please contact the business.';
+    return;
+  }
+  if (!token || !/^[0-9a-f-]{36}$/i.test(token)) {
+    $('loading').textContent = 'This feedback link is invalid. Please request a new link from the business.';
+    return;
+  }
+  const db = window.supabase.createClient(window.BIZKIPE_SUPABASE_URL, window.BIZKIPE_SUPABASE_ANON_KEY);
+  $('loading').classList.add('hidden');
+  $('form').classList.remove('hidden');
+  function showMessage(text, type) {
+    const el = $('message');
+    el.textContent = text;
+    el.className = 'status' + (type ? ' ' + type : '');
+    el.classList.remove('hidden');
+  }
+  $('form').addEventListener('submit', async function (event) {
+    event.preventDefault();
+    if ($('website').value) { $('form').classList.add('hidden'); showMessage('Thank you. Your feedback has been submitted successfully.', 'ok'); return; }
+    $('submit').disabled = true;
+    $('submit').textContent = 'Submitting…';
+    let result;
+    try { result = await db.rpc('bizkipe_submit_customer_feedback', {
+      p_token: token,
+      p_rating: Number($('rating').value),
+      p_category: $('category').value,
+      p_feedback: $('feedback').value.trim(),
+      p_customer_name: $('name').value.trim() || null,
+      p_customer_email: $('email').value.trim() || null
+    }); } catch (e) { result = { error: { message: '' } }; }
+    $('submit').disabled = false;
+    $('submit').textContent = 'Submit feedback';
+    if (result.error) {
+      const m = String(result.error.message || '');
+      showMessage(m.includes('unavailable') ? 'This feedback link is no longer available. Please contact the business.' : m.includes('Too many') ? 'Too many responses were sent just now. Please try again later.' : m.includes('email') ? 'Please check the email address, or leave it empty.' : 'We could not submit your feedback. Please try again later.', 'error');
+      return;
+    }
+    $('form').classList.add('hidden');
+    showMessage('Thank you. Your feedback has been submitted successfully.', 'ok');
+  });
+})();
+</script></body></html>
