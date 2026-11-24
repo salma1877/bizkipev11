@@ -1,0 +1,23 @@
+{
+  "name": "BizKipe - Invoice and Quotation Maker",
+  "short_name": "BizKipe",
+  "description": "Free invoice and quotation maker for freelancers and small businesses in Kenya.",
+  "id": "/",
+  "start_url": "/?source=app",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#f8f7fc",
+  "theme_color": "#5b35d5",
+  "lang": "en-KE",
+  "categories": ["business", "finance", "productivity"],
+  "icons": [
+    {"src": "/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any"},
+    {"src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any"},
+    {"src": "/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable"}
+  ],
+  "shortcuts": [
+    {"name": "Create invoice", "short_name": "Invoice", "url": "/?source=shortcut#builder", "icons": [{"src": "/icon-192.png", "sizes": "192x192"}]},
+    {"name": "My dashboard", "short_name": "Dashboard", "url": "/dashboard.html?source=shortcut", "icons": [{"src": "/icon-192.png", "sizes": "192x192"}]}
+  ]
+}

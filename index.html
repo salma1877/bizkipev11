@@ -15,7 +15,7 @@
 <meta property="og:image" content="https://bizkipev11.vercel.app/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 <script type="application/ld+json">[{"@context": "https://schema.org", "@type": "WebSite", "name": "BizKipe", "url": "https://bizkipev11.vercel.app/"}, {"@context": "https://schema.org", "@type": "WebApplication", "name": "BizKipe", "url": "https://bizkipev11.vercel.app/", "applicationCategory": "BusinessApplication", "operatingSystem": "Any (web browser)", "description": "Free online invoice and quotation maker for freelancers and small businesses in Kenya.", "inLanguage": "en-KE", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "KES"}}]</script>
-<meta name="theme-color" content="#5b35d5">
+<meta name="theme-color" content="#5b35d5"><link rel="manifest" href="/manifest.webmanifest"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="BizKipe">
 <title>BizKipe — Free Invoice and Quotation Maker for Kenya</title>
 <style>
 :root{--brand:#5b35d5;--brand2:#7b61ff;--ink:#1c1a2b;--muted:#6f6b80;--line:#e8e5f0;--bg:#f7f6fb;--card:#fff;--green:#12805c;--shadow:0 12px 35px rgba(36,25,80,.08)}
@@ -263,7 +263,7 @@
  </div></div>
 </section>
 </main>
-<footer class="footer"><div class="container footer-row"><div><div class="logo" style="color:#fff"><img class="logo-mark" src="/logo.svg" alt="" width="36" height="36" style="background:none;border-radius:11px"><span>BizKipe</span></div><p>Simple business documents for people building something of their own. Simple, secure M-Pesa payments. Instant downloads. Trusted by businesses in Kenya.</p></div><div><strong>Build with trust</strong><p>Use accurate business details, agree payment terms with your customers, and keep copies of your records.</p></div></div><div style="display:flex;flex-wrap:wrap;gap:14px;margin-top:14px;font-size:.84rem"><a style="color:#eae5fa" href="/terms.html">Terms</a><a style="color:#eae5fa" href="/privacy.html">Privacy</a><a style="color:#eae5fa" href="/refunds.html">Refund policy</a><a style="color:#eae5fa" href="/about">About</a><a style="color:#eae5fa" href="/guides">Guides</a><a style="color:#eae5fa" href="/support.html">Support</a>
+<footer class="footer"><div class="container footer-row"><div><div class="logo" style="color:#fff"><img class="logo-mark" src="/logo.svg" alt="" width="36" height="36" style="background:none;border-radius:11px"><span>BizKipe</span></div><p>Simple business documents for people building something of their own. Simple, secure M-Pesa payments. Instant downloads. Trusted by businesses in Kenya.</p></div><div><strong>Build with trust</strong><p>Use accurate business details, agree payment terms with your customers, and keep copies of your records.</p></div></div><div style="display:flex;flex-wrap:wrap;gap:14px;margin-top:14px;font-size:.84rem"><a style="color:#eae5fa" href="/terms.html">Terms</a><a style="color:#eae5fa" href="/privacy.html">Privacy</a><a style="color:#eae5fa" href="/refunds.html">Refund policy</a><a style="color:#eae5fa" href="/about">About</a><a style="color:#eae5fa" href="/guides">Guides</a><a style="color:#eae5fa" href="/support.html">Support</a><a id="installApp" href="#" hidden style="color:#eae5fa;font-weight:700">Install app</a>
       </div>
       <div style="margin-top:16px"><a href="https://smolsaas.com/projects/bizkipe?utm_source=badge" target="_blank" rel="noopener noreferrer">
         <img src="https://smolsaas.com/smolsaas/images/badges/featured-on-light.svg" alt="Featured on Smol Saas" style="height:44px;width:auto" loading="lazy"/>
@@ -448,5 +448,12 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 </script>
 
+<script>
+(function(){var dp=null,b=document.getElementById('installApp');
+window.addEventListener('beforeinstallprompt',function(e){e.preventDefault();dp=e;if(b)b.hidden=false});
+if(b)b.addEventListener('click',function(ev){ev.preventDefault();if(!dp)return;dp.prompt();dp.userChoice.then(function(){dp=null;b.hidden=true})});
+window.addEventListener('appinstalled',function(){if(b)b.hidden=true});
+if('serviceWorker' in navigator){window.addEventListener('load',function(){navigator.serviceWorker.register('/sw.js').catch(function(){})})}})();
+</script>
 </body>
 </html>
