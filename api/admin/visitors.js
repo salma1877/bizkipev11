@@ -1,4 +1,4 @@
-const { json, adminAuthorized, supabase } = require('../_lib');
+const { json, adminGuard, supabase } = require('../_lib');
 
 function nairobiStartOfToday() {
   const parts = new Intl.DateTimeFormat('en-CA', { timeZone: 'Africa/Nairobi', year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date());
@@ -25,7 +25,7 @@ async function registeredUsers() {
 }
 
 module.exports = async function handler(req, res) {
-  if (!adminAuthorized(req)) return json(res, 401, { error: 'Unauthorized' });
+  if (!(await adminGuard(req, res))) return;
   if (req.method !== 'GET') return json(res, 405, { error: 'Method not allowed' });
   try {
     const now = Date.now();

@@ -51,6 +51,39 @@ async function supabase(path, options = {}) {
   if (!response.ok) throw new Error(data?.message || data?.error || 'Database request failed');
   return data;
 }
+function clientHash(req) {
+  const ip = String(req.headers['x-forwarded-for'] || '').split(',')[0].trim() || 'unknown';
+  return sha256(ip + ':' + (process.env.ADMIN_TOKEN || '')).slice(0, 16);
+}
+// Writes one line to the admin activity log. Never throws: logging must not break an admin action.
+async function logActivity(req, action, detail, orderId, success) {
+  try {
+    await supabase('admin_activity', {
+      method: 'POST',
+      headers: { Prefer: 'return=minimal' },
+      body: JSON.stringify({ action, detail: String(detail || '').slice(0, 300), order_id: orderId || null, success: success !== false, ip_hash: clientHash(req) })
+    });
+  } catch (error) { console.error('activity log error:', error.message); }
+}
+// Admin gate: five wrong tokens from one address lock it out for 10 minutes.
+// If the log table is not set up yet it fails open, so the admin page keeps working.
+async function adminGuard(req, res) {
+  const hash = clientHash(req);
+  let logReady = true;
+  try {
+    const since = new Date(Date.now() - 10 * 60000).toISOString();
+    const rows = await supabase('admin_activity?select=id&action=eq.login_failed&ip_hash=eq.' + hash + '&created_at=gte.' + encodeURIComponent(since) + '&limit=5', { method: 'GET' });
+    if (Array.isArray(rows) && rows.length >= 5) {
+      json(res, 429, { error: 'Too many wrong attempts. Please wait 10 minutes and try again.' });
+      return false;
+    }
+  } catch (error) { logReady = false; }
+  if (adminAuthorized(req)) return true;
+  const supplied = String(req.headers.authorization || '').replace(/^Bearer\s+/i, '');
+  if (logReady && supplied) await logActivity(req, 'login_failed', 'Wrong admin token', null, false);
+  json(res, 401, { error: 'Unauthorized' });
+  return false;
+}
 async function darajaAccessToken() {
   const key = process.env.DARAJA_CONSUMER_KEY;
   const secret = process.env.DARAJA_CONSUMER_SECRET;
@@ -85,4 +118,4 @@ async function queryStkStatus(checkoutRequestId) {
   const data = await response.json();
   return { ok: response.ok, data };
 }
-module.exports = { json, timingSafeEqualText, sha256, downloadSignature, normalizePhone, requireMethod, adminAuthorized, supabase, darajaAccessToken, kenyaTimestamp, queryStkStatus };
+module.exports = { adminGuard, logActivity, clientHash, json, timingSafeEqualText, sha256, downloadSignature, normalizePhone, requireMethod, adminAuthorized, supabase, darajaAccessToken, kenyaTimestamp, queryStkStatus };
