@@ -449,11 +449,8 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 
 <script>
-(function(){var dp=null,b=document.getElementById('installApp');
-window.addEventListener('beforeinstallprompt',function(e){e.preventDefault();dp=e;if(b)b.hidden=false});
-if(b)b.addEventListener('click',function(ev){ev.preventDefault();if(!dp)return;dp.prompt();dp.userChoice.then(function(){dp=null;b.hidden=true})});
-window.addEventListener('appinstalled',function(){if(b)b.hidden=true});
-if('serviceWorker' in navigator){window.addEventListener('load',function(){navigator.serviceWorker.register('/sw.js').catch(function(){})})}})();
+if('serviceWorker' in navigator){window.addEventListener('load',function(){navigator.serviceWorker.register('/sw.js').catch(function(){})})}
 </script>
+<script src="/install.js" defer></script>
 <script src="/visit.js" defer></script></body>
 </html>
